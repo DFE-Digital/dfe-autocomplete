@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
     Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   end
 
-  spec.add_dependency 'govuk-components', '~> 2.1'
+  spec.add_dependency 'govuk-components'
   spec.add_dependency 'view_component'
   spec.add_dependency 'rails', '>= 7.0.2.3'
   spec.add_dependency 'activemodel', '>= 7.0.2.3'

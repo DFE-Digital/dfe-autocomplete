@@ -1,3 +1,4 @@
+alert("Autocomplete js worked!")
 import './style.scss'
 import accessibleAutocomplete from 'accessible-autocomplete'
 import { nodeListForEach } from 'govuk-frontend/govuk/common'
