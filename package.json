@@ -1,0 +1,41 @@
+{
+  "name": "dfe-autocomplete",
+  "version": "0.0.1",
+  "description": "DfE Autocomplete built on top of accessible autocomplete lib",
+  "main": "dist/dfe-autocomplete.min.js",
+  "style": "dist/dfe-autocomplete.min.css",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "test",
+    "build:js": "cross-env NODE_ENV=production webpack --progress --display-modules",
+    "build": "run-s 'build:js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DFE-Digital/dfe-autocomplete.git"
+  },
+  "author": "DfE-Digital",
+  "license": "MIT",
+  "keywords": [
+    "a11y",
+    "accessibility",
+    "autocomplete",
+    "component",
+    "plugin",
+    "typeahead",
+    "widget"
+  ],
+  "devDependencies": {
+    "csso-cli": "^3.0.0",
+    "cross-env": "^5.2.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.3"
+  },
+  "bugs": {
+    "url": "https://github.com/DFE-Digital/dfe-autocomplete/issues"
+  },
+  "homepage": "https://github.com/DFE-Digital/dfe-autocomplete#readme"
+}
