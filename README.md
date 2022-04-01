@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "dfe-autocomplete"
+gem 'dfe-autocomplete', require: 'dfe/autocomplete'
 ```
 
 And then execute:
