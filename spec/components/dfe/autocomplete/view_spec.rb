@@ -5,6 +5,11 @@ module Dfe
       attr_accessor :id, :country, :country_raw
     end
 
+    class ExampleModelTwo
+      include ActiveModel::Model
+      attr_accessor :id, :grade
+    end
+
     describe View do
       let(:controller) { ActionController::Base.new }
       include ActionView::Helpers::FormHelper
@@ -39,6 +44,23 @@ module Dfe
         end
       end
 
+      context 'when not defining the raw attribute' do
+        before do
+          render_inline(
+            View.new(
+              form(ExampleModelTwo),
+              attribute_name: :grade,
+              form_field: form_field,
+              html_attributes: { 'test-attribute' => 'my-custom-attribute' }
+            )
+          )
+        end
+
+        it 'supports custom html attributes on the parent container' do
+          expect(component).to have_selector('[data-default-value=""]')
+        end
+      end
+
       private
 
       attr_accessor :output_buffer
@@ -59,8 +81,8 @@ module Dfe
         EOSQL
       end
 
-      def form
-        form_for ExampleModel.new, url: 'example.com' do |f|
+      def form(model = ExampleModel)
+        form_for model.new, url: 'example.com' do |f|
           return f
         end
       end

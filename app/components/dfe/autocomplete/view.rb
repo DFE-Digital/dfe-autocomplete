@@ -2,7 +2,7 @@ module Dfe
   module Autocomplete
     class View < GovukComponent::Base
       def initialize(form, attribute_name:, form_field:, classes: [], html_attributes: {})
-        @raw_attribute_value = form.object.send("#{attribute_name}_raw")
+        @raw_attribute_value = form.object.send("#{attribute_name}_raw") if form.object.respond_to?(:"#{attribute_name}_raw")
         @attribute_value = form.object.send(attribute_name)
         @attribute_name = attribute_name
         @form_field = form_field
