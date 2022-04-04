@@ -1,9 +1,11 @@
 alert("Autocomplete js worked!")
-import './style.scss'
+//import './dfe-autocomplete.scss'
 import accessibleAutocomplete from 'accessible-autocomplete'
 import { nodeListForEach } from 'govuk-frontend/govuk/common'
 import sort from './sort'
-import tracker from '../tracker.js'
+// import tracker from '../tracker.js'
+// FIXME: See tracker
+const tracker = {};
 
 const $allAutocompleteElements = document.querySelectorAll('[data-module="app-autocomplete"]')
 const defaultValueOption = component => component.getAttribute('data-default-value') || ''
