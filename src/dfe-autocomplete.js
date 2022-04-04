@@ -1,13 +1,17 @@
-alert("Autocomplete js worked!")
 //import './dfe-autocomplete.scss'
 import accessibleAutocomplete from 'accessible-autocomplete'
 import { nodeListForEach } from 'govuk-frontend/govuk/common'
 import sort from './sort'
-// import tracker from '../tracker.js'
-// FIXME: See tracker
-const tracker = {};
 
-const $allAutocompleteElements = document.querySelectorAll('[data-module="app-autocomplete"]')
+// FIXME: this should be configurable
+let minLength = 1;
+
+// FIXME: add a configurable tracker
+let tracker = {
+  sendTrackingEvent: function() { console.log("sendTrackingEvent()"); },
+  trackSearch: function() { console.log("trackSearch()"); }
+}
+
 const defaultValueOption = component => component.getAttribute('data-default-value') || ''
 
 const suggestion = (value, options) => {
@@ -46,7 +50,7 @@ const setupAutoComplete = (component) => {
   accessibleAutocomplete.enhanceSelectElement({
     defaultValue: inError ? '' : inputValue,
     selectElement: selectEl,
-    minLength: 2,
+    minLength: minLength,
     source: (query, populateResults) => {
       if (/\S/.test(query)) {
         tracker.trackSearch(query)
@@ -68,4 +72,5 @@ const setupAutoComplete = (component) => {
   }
 }
 
+const $allAutocompleteElements = document.querySelectorAll('[data-module="app-autocomplete"]')
 nodeListForEach($allAutocompleteElements, setupAutoComplete)
