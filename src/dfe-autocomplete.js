@@ -1,15 +1,13 @@
-//import './dfe-autocomplete.scss'
 import accessibleAutocomplete from 'accessible-autocomplete'
 import { nodeListForEach } from 'govuk-frontend/govuk/common'
 import sort from './sort'
 
-// FIXME: this should be configurable
-let minLength = 1;
+let minLength;
+let tracker;
 
-// FIXME: add a configurable tracker
-let tracker = {
-  sendTrackingEvent: function() { console.log("sendTrackingEvent()"); },
-  trackSearch: function() { console.log("trackSearch()"); }
+const nullTracker = {
+  sendTrackingEvent: function() { },
+  trackSearch: function() { }
 }
 
 const defaultValueOption = component => component.getAttribute('data-default-value') || ''
@@ -34,18 +32,25 @@ const enhanceOption = (option) => {
   }
 }
 
-const setupAutoComplete = (component) => {
+const setupAutoComplete = (component, libraryOptions = {}) => {
   const selectEl = component.querySelector('select')
   const selectOptions = Array.from(selectEl.options)
   const options = selectOptions.map(o => enhanceOption(o))
   const inError = component.querySelector('div.govuk-form-group').className.includes('error')
   const inputValue = defaultValueOption(component)
+  tracker = libraryOptions.trackerObject || nullTracker;
+  minLength = libraryOptions.minLength || 1;
+  const rawAttribute = libraryOptions.rawAttribute || false;
 
   // We add a name which we base off the name for the select element and add "raw" to it, eg
   // if there is a select input called "course_details[subject]" we add a name to the text input
   // as "course_details[subject_raw]"
   const matches = /^(\w+)\[(\w+)\]$/.exec(selectEl.name)
-  const rawFieldName = `${matches[1]}[${matches[2]}_raw]`
+  let fieldName = `${matches[1]}[${matches[2]}]`
+
+  if (rawAttribute) {
+    fieldName = `${matches[1]}[${matches[2]}_raw]`
+  }
 
   accessibleAutocomplete.enhanceSelectElement({
     defaultValue: inError ? '' : inputValue,
@@ -59,7 +64,7 @@ const setupAutoComplete = (component) => {
     },
     autoselect: true,
     templates: { suggestion: (value) => suggestion(value, options) },
-    name: rawFieldName,
+    name: fieldName,
     onConfirm: (val) => {
       tracker.sendTrackingEvent(val, selectEl.name)
       const selectedOption = [].filter.call(selectOptions, option => (option.textContent || option.innerText) === val)[0]
