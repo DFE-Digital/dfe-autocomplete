@@ -20,7 +20,7 @@ module Dfe
       def default_html_attributes
         {
           id: attribute_name.to_s,
-          'data-module' => 'app-autocomplete',
+          'data-module' => 'app-dfe-autocomplete',
           'data-default-value' => (@raw_attribute_value || @attribute_value).to_s
         }
       end

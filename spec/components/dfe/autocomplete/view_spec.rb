@@ -25,6 +25,10 @@ module Dfe
         it 'supports custom classes on the parent container' do
           expect(component).to have_selector('.test-css-class')
         end
+
+        it 'adds the data module' do
+          expect(component).to have_selector('[data-module="app-dfe-autocomplete"]')
+        end
       end
 
       context 'when sending html attributes' do
@@ -56,7 +60,7 @@ module Dfe
           )
         end
 
-        it 'supports custom html attributes on the parent container' do
+        it 'create empty default value' do
           expect(component).to have_selector('[data-default-value=""]')
         end
       end
