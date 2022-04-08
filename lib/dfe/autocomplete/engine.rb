@@ -9,10 +9,9 @@ module Dfe
 
       config.to_prepare do
         Dir[
-          Dfe::Autocomplete::Engine.root.join("app", "components", "*/*/*.rb")
+          Dfe::Autocomplete::Engine.root.join('app', 'components', '*/*/*.rb')
         ].sort.each { |f| require_dependency f }
       end
     end
   end
 end
-

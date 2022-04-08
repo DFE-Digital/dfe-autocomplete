@@ -1,6 +1,7 @@
 require_relative 'lib/dfe/autocomplete/version'
 
 Gem::Specification.new do |spec|
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
   spec.name        = 'dfe-autocomplete'
   spec.version     = Dfe::Autocomplete::VERSION
   spec.authors     = ["Tomas D'Stefano"]
@@ -22,12 +23,13 @@ Gem::Specification.new do |spec|
     Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   end
 
-  spec.add_dependency 'govuk-components'
-  spec.add_dependency 'view_component'
-  spec.add_dependency 'rails', '>= 7.0.2.3'
-  spec.add_dependency 'activemodel', '>= 7.0.2.3'
   spec.add_dependency 'actionview', '>= 7.0.2.3'
-  spec.add_development_dependency 'rspec-rails'
-  spec.add_development_dependency 'rspec-html-matchers'
+  spec.add_dependency 'activemodel', '>= 7.0.2.3'
+  spec.add_dependency 'govuk-components'
+  spec.add_dependency 'rails', '>= 7.0.2.3'
+  spec.add_dependency 'view_component'
   spec.add_development_dependency 'capybara'
+  spec.add_development_dependency 'rspec-html-matchers'
+  spec.add_development_dependency 'rspec-rails'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end
