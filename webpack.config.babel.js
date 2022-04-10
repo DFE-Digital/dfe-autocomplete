@@ -106,15 +106,15 @@ const config = {
 const bundleStandalone = {
   ...config,
   entry: {
-    'dfe-autocomplete.min': './dfe-autocomplete.js'
+    'dfe-autocomplete.min': './wrapper.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: '[name].js',
-    library: 'dfeAutocomplete',
     libraryExport: 'default',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    globalObject: 'this'
   },
   plugins: plugins
     .concat(ENV === 'development'

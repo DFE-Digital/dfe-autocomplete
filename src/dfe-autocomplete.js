@@ -32,7 +32,7 @@ const enhanceOption = (option) => {
   }
 }
 
-const setupAccessibleAutoComplete = (component, libraryOptions = {}) => {
+export const setupAccessibleAutoComplete = (component, libraryOptions = {}) => {
   const selectEl = component.querySelector('select')
   const selectOptions = Array.from(selectEl.options)
   const options = selectOptions.map(o => enhanceOption(o))
@@ -76,13 +76,3 @@ const setupAccessibleAutoComplete = (component, libraryOptions = {}) => {
     component.querySelector('input').value = inputValue
   }
 }
-
-const setupDfEAutoComplete = (libraryOptions = {}) => {
-  const $allAutocompleteElements = document.querySelectorAll('[data-module="app-dfe-autocomplete"]')
-
-  $allAutocompleteElements.forEach((element) => {
-    setupAccessibleAutoComplete(element, libraryOptions)
-  });
-}
-
-setupDfEAutoComplete();
