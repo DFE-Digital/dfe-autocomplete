@@ -1,4 +1,4 @@
-module Dfe
+module DfE
   module Autocomplete
     class View < GovukComponent::Base
       def initialize(form, attribute_name:, form_field:, classes: [], html_attributes: {})

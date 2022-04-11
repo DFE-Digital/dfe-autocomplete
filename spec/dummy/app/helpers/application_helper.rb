@@ -1,3 +1,3 @@
 module ApplicationHelper
-  include Dfe::Autocomplete::ApplicationHelper
+  include DfE::Autocomplete::ApplicationHelper
 end

@@ -3,7 +3,7 @@ require_relative 'lib/dfe/autocomplete/version'
 Gem::Specification.new do |spec|
   spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
   spec.name        = 'dfe-autocomplete'
-  spec.version     = Dfe::Autocomplete::VERSION
+  spec.version     = DfE::Autocomplete::VERSION
   spec.authors     = ["Tomas D'Stefano"]
   spec.email       = ['tomas_stefano@successoft.com']
   spec.homepage    = 'https://github.com/DFE-Digital/dfe-autocomplete'

@@ -1,4 +1,4 @@
-# Dfe::Autocomplete
+# DfE::Autocomplete
 Short description and motivation.
 
 ## Usage

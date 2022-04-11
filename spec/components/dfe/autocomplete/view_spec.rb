@@ -1,4 +1,4 @@
-module Dfe
+module DfE
   module Autocomplete
     class ExampleModel
       include ActiveModel::Model

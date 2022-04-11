@@ -1,4 +1,4 @@
-module Dfe
+module DfE
   module Autocomplete
     module ApplicationHelper
       def dfe_autocomplete_options(records, synonyms_fields: [:synonyms], append: false, boost: 1.5)

@@ -1,4 +1,4 @@
-RSpec.describe Dfe::Autocomplete::ApplicationHelper, type: :helper do
+RSpec.describe DfE::Autocomplete::ApplicationHelper, type: :helper do
   describe '#dfe_autocomplete_options' do
     context 'when appending values into the suggestions' do
       it 'adds the data append attribute' do

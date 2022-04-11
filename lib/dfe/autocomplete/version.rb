@@ -1,4 +1,4 @@
-module Dfe
+module DfE
   module Autocomplete
     VERSION = '0.1.0'.freeze
   end
