@@ -14,7 +14,7 @@ module Dfe
       attr_accessor :form_field, :attribute_name
 
       def default_classes
-        %w[app-!-autocomplete--max-width-two-thirds]
+        %w[app-!-autocomplete--max-width-two-thirds suggestions]
       end
 
       def default_html_attributes

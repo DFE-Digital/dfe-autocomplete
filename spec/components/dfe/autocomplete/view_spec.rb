@@ -26,6 +26,10 @@ module Dfe
           expect(component).to have_selector('.test-css-class')
         end
 
+        it 'includes default classes' do
+          expect(component).to have_selector('.suggestions')
+        end
+
         it 'adds the data module' do
           expect(component).to have_selector('[data-module="app-dfe-autocomplete"]')
         end
