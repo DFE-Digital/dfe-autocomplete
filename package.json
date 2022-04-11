@@ -9,8 +9,9 @@
   },
   "scripts": {
     "test": "test",
+    "build:css": "node-sass src/dfe-autocomplete.scss -o dist/ && csso dist/dfe-autocomplete.css -o dist/dfe-autocomplete.min.css",
     "build:js": "cross-env NODE_ENV=production webpack --progress --display-modules",
-    "build": "npm run -s 'build:js'",
+    "build": "npm run -s 'build:js' 'build:css'",
     "standard": "standard"
   },
   "repository": {
@@ -43,6 +44,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^6.7.1",
     "csso-cli": "^3.0.0",
+    "node-sass": "^7.0.1",
     "sass": "^1.49.11",
     "sass-loader": "^12.6.0",
     "source-map-loader": "^1.1.3",
