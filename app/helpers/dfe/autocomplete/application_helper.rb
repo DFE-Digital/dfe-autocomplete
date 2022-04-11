@@ -4,7 +4,7 @@ module Dfe
       def dfe_autocomplete_options(records, synonyms_fields: [:synonyms], append: false, boost: 1.5)
         records.sort_by(&:name).map do |record|
           data = {
-            'data-synonyms' => synonyms_for(record, synonyms_fields).flatten.join('|'),
+            'data-synonyms' => dfe_autocomplete_synonyms_for(record, synonyms_fields).flatten.join('|'),
             'data-boost' => boost
           }
 
@@ -17,7 +17,7 @@ module Dfe
 
       private
 
-      def synonyms_for(record, synonyms_fields)
+      def dfe_autocomplete_synonyms_for(record, synonyms_fields)
         synonyms = []
 
         synonyms_fields.each do |synonym_field|

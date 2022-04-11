@@ -9,8 +9,15 @@ module Dfe
 
       config.to_prepare do
         Dir[
-          Dfe::Autocomplete::Engine.root.join('app', 'components', '*/*/*.rb')
+          Dfe::Autocomplete::Engine.root.join('app', 'components', '*/*/*.rb'),
         ].sort.each { |f| require_dependency f }
+      end
+
+      initializer 'local_helper.action_controller' do
+        require_dependency Dfe::Autocomplete::Engine.root.join('app', 'helpers', 'dfe', 'autocomplete', 'application_helper.rb')
+        ActiveSupport.on_load :action_controller_base do
+          helper Dfe::Autocomplete::ApplicationHelper
+        end
       end
     end
   end
