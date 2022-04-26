@@ -1,5 +1,10 @@
 # DfE::Autocomplete
-Short description and motivation.
+
+A library built on top of accessible-autocomplete from GovUk.
+
+It can benefit more if you have a rich data where you can match the autocomplete
+results with synonyms and also ignoring stopwords so it can benefit for more
+accuracy.
 
 ## Usage
 
