@@ -9,9 +9,8 @@
   },
   "scripts": {
     "test": "test",
-    "build:css": "node-sass src/dfe-autocomplete.scss -o dist/ && csso dist/dfe-autocomplete.css -o dist/dfe-autocomplete.min.css",
     "build:js": "cross-env NODE_ENV=production webpack --progress --display-modules",
-    "build": "npm run -s 'build:js' 'build:css'",
+    "build": "npm run -s 'build:js'",
     "standard": "standard"
   },
   "repository": {
@@ -62,7 +61,6 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
-    "accessible-autocomplete": "^2.0.4",
-    "govuk-frontend": "^3.14.0"
+    "accessible-autocomplete": "^2.0.4"
   }
 }
