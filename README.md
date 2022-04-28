@@ -122,7 +122,7 @@ Supported options:
 
 ## Stylesheet
 
-If you need to import styles as well:
+You need to import it using Sass:
 
 ```scss
   @import "dfe-autocomplete/src/dfe-autocomplete";
