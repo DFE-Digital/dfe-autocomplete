@@ -6,20 +6,17 @@ module DfE
         @attribute_value = form.object.send(attribute_name)
         @attribute_name = attribute_name
         @form_field = form_field
-        super(classes: classes, html_attributes: default_html_attributes.merge(html_attributes))
+        super(classes: classes, html_attributes: html_attributes)
       end
 
       private
 
       attr_accessor :form_field, :attribute_name
 
-      def default_classes
-        %w[app-!-autocomplete--max-width-two-thirds suggestions]
-      end
-
-      def default_html_attributes
+      def default_attributes
         {
           id: attribute_name.to_s,
+          'class' => %w[app-!-autocomplete--max-width-two-thirds suggestions],
           'data-module' => 'app-dfe-autocomplete',
           'data-default-value' => (@raw_attribute_value || @attribute_value).to_s
         }

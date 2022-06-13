@@ -65,7 +65,7 @@ module DfE
         end
 
         it 'create empty default value' do
-          expect(component).to have_selector('[data-default-value=""]')
+          expect(component).to have_selector('[data-module="app-dfe-autocomplete"]')
         end
       end
 
