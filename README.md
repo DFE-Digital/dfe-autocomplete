@@ -127,3 +127,17 @@ You need to import it using Sass:
 ```scss
   @import "dfe-autocomplete/src/dfe-autocomplete";
 ```
+
+# Release process
+
+Until we sort out our RubyGems account, dependents will pull the gem from GitHub.
+
+The process is:
+- Bump the version number in `lib/dfe/autocomplete/version.rb`
+- Tag a new version
+- Push to GitHub
+
+The recommended way to accomplish the last two steps is to use https://github.com/svenfuchs/gem-release#gem-tag.
+```bash
+gem tag -p # -p will push to GitHub
+```
