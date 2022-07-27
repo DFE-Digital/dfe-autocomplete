@@ -21,6 +21,26 @@ And then execute:
 $ bundle
 ```
 
+### Inflections
+
+You might get an error when running tests in CI that looks like this:
+
+```ruby
+NameError: uninitialized constant Dfe::Autocomplete::View
+```
+
+Note the `Dfe` which is incorrectly capitalised. This is likely related to the
+inflector.
+
+One way to fix it is to specify a new acronym in an initializer, e.g. in
+`config/initializers/inflections.rb`:
+
+```ruby
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.acronym "DfE"
+end
+```
+
 ## NPM package
 
 Add this line to your application's package.json (currently not on NPM yet):
