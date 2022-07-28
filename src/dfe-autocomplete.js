@@ -1,5 +1,4 @@
 import accessibleAutocomplete from 'accessible-autocomplete'
-import { nodeListForEach } from 'govuk-frontend/govuk/common'
 import sort from './sort'
 
 let minLength;
