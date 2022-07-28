@@ -17,6 +17,7 @@ gem 'dfe-autocomplete', require: 'dfe/autocomplete', github: 'DFE-Digital/dfe-au
 ```
 
 And then execute:
+
 ```bash
 $ bundle
 ```
@@ -46,11 +47,11 @@ end
 Add this line to your application's package.json (currently not on NPM yet):
 
 ```json
-  {
-    "dependencies": {
-      "dfe-autocomplete": "github:DFE-Digital/dfe-autocomplete"
-    }
+{
+  "dependencies": {
+    "dfe-autocomplete": "github:DFE-Digital/dfe-autocomplete"
   }
+}
 ```
 
 ## Rails usage
@@ -129,16 +130,16 @@ results you can use the `append` option. There is also the boost option.
 ## Javascript
 
 ```javascript
-import dfeAutocomplete from 'dfe-autocomplete'
+import dfeAutocomplete from "dfe-autocomplete";
 
-dfeAutocomplete({})
+dfeAutocomplete({});
 ```
 
 Supported options:
 
-* `trackerObject`: A tracker object that responds to 'trackSearch' and 'sendTrackingEvent' functions
-* `minLength`: The minimum number of characters that should be entered before the autocomplete will attempt to suggest options. When the query length is under this, the aria status region will also provide helpful text to the user informing them they should type in more.
-* `rawAttribute`: the second parameter that will be sent when user submits the form. This is useful when the user types free text instead of choosing any element in the collection.
+- `trackerObject`: A tracker object that responds to 'trackSearch' and 'sendTrackingEvent' functions
+- `minLength`: The minimum number of characters that should be entered before the autocomplete will attempt to suggest options. When the query length is under this, the aria status region will also provide helpful text to the user informing them they should type in more.
+- `rawAttribute`: the second parameter that will be sent when user submits the form. This is useful when the user types free text instead of choosing any element in the collection.
 
 Plus all the other options from the upstream autocomplete: https://github.com/alphagov/accessible-autocomplete#api-documentation
 
@@ -147,5 +148,17 @@ Plus all the other options from the upstream autocomplete: https://github.com/al
 You need to import it using Sass:
 
 ```scss
-  @import "dfe-autocomplete/src/dfe-autocomplete";
+@import "dfe-autocomplete/src/dfe-autocomplete";
 ```
+
+## Contributing
+
+Run the `npm run build` and commit the resulting `dist` folder:
+
+```bash
+npm run build
+```
+
+## Licence
+
+[MIT](MIT-LICENSE).
