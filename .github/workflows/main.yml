@@ -25,3 +25,11 @@ jobs:
         bundler-cache: true
     - name: Run the specs
       run: bundle exec rspec
+    - name: Install node deps
+      run: npm i
+    - name: Build node
+      run: npm run build
+    - name: Show any unstaged changes in dist
+      run: git diff dist
+    - name: Throw if dist is not commited
+      run: git diff-index --quiet HEAD dist
