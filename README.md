@@ -140,6 +140,8 @@ Supported options:
 * `minLength`: The minimum number of characters that should be entered before the autocomplete will attempt to suggest options. When the query length is under this, the aria status region will also provide helpful text to the user informing them they should type in more.
 * `rawAttribute`: the second parameter that will be sent when user submits the form. This is useful when the user types free text instead of choosing any element in the collection.
 
+Plus all the other options from the upstream autocomplete: https://github.com/alphagov/accessible-autocomplete#api-documentation
+
 ## Stylesheet
 
 You need to import it using Sass:
