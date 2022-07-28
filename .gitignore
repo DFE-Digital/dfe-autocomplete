@@ -10,3 +10,4 @@
 /spec/dummy/storage/
 /spec/dummy/tmp/
 Gemfile.lock
+node_modules
