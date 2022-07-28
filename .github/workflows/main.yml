@@ -1,4 +1,4 @@
-name: Ruby
+name: CI
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  ruby:
     runs-on: ubuntu-latest
     name: Ruby ${{ matrix.ruby }}
     strategy:
@@ -25,10 +25,16 @@ jobs:
         bundler-cache: true
     - name: Run the specs
       run: bundle exec rspec
-    - name: Install node deps
-      run: npm i
-    - name: Build node
-      run: npm run build
+
+  node:
+    runs-on: ubuntu-latest
+    name: Node build
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v3
+    - run: npm ci
+    - run: npm run build
     - name: Show any unstaged changes in dist
       run: git diff dist
     - name: Throw if dist is not commited
