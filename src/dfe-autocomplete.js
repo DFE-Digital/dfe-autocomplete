@@ -1,5 +1,4 @@
 import accessibleAutocomplete from 'accessible-autocomplete'
-import { nodeListForEach } from 'govuk-frontend/govuk/common'
 import sort from './sort'
 
 let minLength;
@@ -69,7 +68,8 @@ export const setupAccessibleAutoComplete = (component, libraryOptions = {}) => {
       tracker.sendTrackingEvent(val, selectEl.name)
       const selectedOption = [].filter.call(selectOptions, option => (option.textContent || option.innerText) === val)[0]
       if (selectedOption) selectedOption.selected = true
-    }
+    },
+    ...libraryOptions
   })
 
   if (inError) {
