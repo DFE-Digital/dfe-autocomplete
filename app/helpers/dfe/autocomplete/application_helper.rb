@@ -11,7 +11,10 @@ module DfE
           append_data = record.send(append) if append.present?
           data['data-append'] = append_data && tag.strong("(#{append_data})")
 
-          [record.name, record.name, data]
+          name = record.name
+          value = record.try(:value).presence || name
+
+          [name, value, data]
         end.unshift([nil, nil, nil])
       end
 
