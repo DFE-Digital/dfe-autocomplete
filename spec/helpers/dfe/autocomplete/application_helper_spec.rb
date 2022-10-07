@@ -1,5 +1,21 @@
 RSpec.describe DfE::Autocomplete::ApplicationHelper, type: :helper do
   describe '#dfe_autocomplete_options' do
+    context 'when records have values' do
+      it 'uses the values instead of the name' do
+        records = [
+          double(name: 'Bachelor of Arts Economics', value: "baecon")
+        ]
+        expect(helper.dfe_autocomplete_options(records)).to eq([
+          [nil, nil, nil],
+          [
+            'Bachelor of Arts Economics',
+            'baecon',
+            { 'data-append' => nil, 'data-boost' => 1.5, 'data-synonyms' => '' }
+          ]
+        ])
+      end
+    end
+
     context 'when appending values into the suggestions' do
       it 'adds the data append attribute' do
         records = [

@@ -121,11 +121,13 @@ Then we can output the HTML required for the JS to work using the gem component
 ```
 
 The helper `dfe_autocomplete_options` assumes that the elements in the
-collection respond to the method `name` and if the element respond to `synonyms`
-that will be included in the synonyms list automatically. If you want to pass
-other methods that are synonyms you can include as the example above
-`suggestion_synonyms match_synonyms`. If you need to append any data to the
-results you can use the `append` option. There is also the boost option.
+collection respond to the method `name`. If the element responds to `value`
+that will be used as the value of the `<option>` HTML element. If the
+element responds to `synonyms` that will be included in the synonyms list
+automatically. If you want to pass  other methods that are synonyms you can
+include as the example above `suggestion_synonyms match_synonyms`. If you
+need to append any data to the results you can use the `append` option.
+There is also the boost option.
 
 ## Javascript
 
