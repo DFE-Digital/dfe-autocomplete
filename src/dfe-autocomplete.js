@@ -37,40 +37,43 @@ export const setupAccessibleAutoComplete = (component, libraryOptions = {}) => {
   const options = selectOptions.map(o => enhanceOption(o))
   const inError = component.querySelector('div.govuk-form-group').className.includes('error')
   const inputValue = defaultValueOption(component)
-  tracker = libraryOptions.trackerObject || nullTracker;
-  minLength = libraryOptions.minLength || 1;
-  const rawAttribute = libraryOptions.rawAttribute || false;
+  const tracker = libraryOptions.tracker || nullTracker
 
-  // We add a name which we base off the name for the select element and add "raw" to it, eg
-  // if there is a select input called "course_details[subject]" we add a name to the text input
-  // as "course_details[subject_raw]"
-  const matches = /^(\w+)\[(\w+)\]$/.exec(selectEl.name)
-  let fieldName = `${matches[1]}[${matches[2]}]`
-
-  if (rawAttribute) {
-    fieldName = `${matches[1]}[${matches[2]}_raw]`
-  }
-
-  accessibleAutocomplete.enhanceSelectElement({
+  const defaultOptions = {
+    autoselect: true,
     defaultValue: inError ? '' : inputValue,
+    minLength: 1,
+    rawAttribute: false,
     selectElement: selectEl,
-    minLength: minLength,
+    trackerObject: tracker,
+    onConfirm: (val) => {
+      tracker.sendTrackingEvent(val, selectEl.name)
+      const selectedOption = [].filter.call(selectOptions, option => (option.textContent || option.innerText) === val)[0]
+      if (selectedOption) selectedOption.selected = true
+    },
     source: (query, populateResults) => {
       if (/\S/.test(query)) {
         tracker.trackSearch(query)
         populateResults(sort(query, options))
       }
     },
-    autoselect: true,
-    templates: { suggestion: (value) => suggestion(value, options) },
-    name: fieldName,
-    onConfirm: (val) => {
-      tracker.sendTrackingEvent(val, selectEl.name)
-      const selectedOption = [].filter.call(selectOptions, option => (option.textContent || option.innerText) === val)[0]
-      if (selectedOption) selectedOption.selected = true
-    },
-    ...libraryOptions
-  })
+    templates: { suggestion: (value) => suggestion(value, options) }
+  }
+
+  const autocompleteOptions = Object.assign({}, defaultOptions, libraryOptions)
+
+  // We add a name which we base off the name for the select element and add "raw" to it, eg
+  // if there is a select input called "course_details[subject]" we add a name to the text input
+  // as "course_details[subject_raw]"
+  const matches = /^(\w+)\[(\w+)\]$/.exec(selectEl.name)
+
+  if (autocompleteOptions.rawAttribute) {
+    autocompleteOptions.name = `${matches[1]}[${matches[2]}_raw]`
+  } else {
+    autocompleteOptions.name = `${matches[1]}[${matches[2]}]`
+  }
+
+  accessibleAutocomplete.enhanceSelectElement(autocompleteOptions)
 
   if (inError) {
     component.querySelector('input').value = inputValue
