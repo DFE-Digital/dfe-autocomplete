@@ -14,28 +14,30 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - '2.7.0'
+          - "2.7.0"
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - name: Run the specs
-      run: bundle exec rspec
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run the specs
+        run: bundle exec rspec
 
   node:
     runs-on: ubuntu-latest
     name: Node build
+    env:
+      NODE_OPTIONS: "--openssl-legacy-provider"
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v3
-    - run: npm ci
-    - run: npm run build
-    - name: Show any unstaged changes in dist
-      run: git diff dist
-    - name: Throw if dist is not commited
-      run: git diff-index --quiet HEAD dist
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm ci
+      - run: npm run build
+      - name: Show any unstaged changes in dist
+        run: git diff dist
+      - name: Throw if dist is not committed
+        run: git diff-index --quiet HEAD dist
