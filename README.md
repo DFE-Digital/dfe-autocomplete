@@ -124,7 +124,7 @@ The helper `dfe_autocomplete_options` assumes that the elements in the
 collection respond to the method `name`. If the element responds to `value`
 that will be used as the value of the `<option>` HTML element. If the
 element responds to `synonyms` that will be included in the synonyms list
-automatically. If you want to pass  other methods that are synonyms you can
+automatically. If you want to pass other methods that are synonyms you can
 include as the example above `suggestion_synonyms match_synonyms`. If you
 need to append any data to the results you can use the `append` option.
 There is also the boost option.
@@ -155,7 +155,7 @@ You need to import it using Sass:
 
 ## Contributing
 
-Run the `npm run build` and commit the resulting `dist` folder:
+Run the `npm run compile` and commit the resulting `dist` folder:
 
 ```bash
 npm run build

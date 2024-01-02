@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "test",
-    "build:js": "cross-env NODE_ENV=production webpack --progress --display-modules",
-    "build": "npm run -s 'build:js'",
+    "compile:js": "cross-env NODE_ENV=production webpack --progress --display-modules",
+    "compile": "npm run -s 'compile:js'",
     "standard": "standard"
   },
   "repository": {
