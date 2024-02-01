@@ -12,7 +12,7 @@ const nullTracker = {
 const defaultValueOption = component => component.getAttribute('data-default-value') || ''
 
 const suggestion = (value, options) => {
-  const option = options.find(o => o.name === value)
+  const option = options.find(o => o.name === value || o.text == value )
   if (option) {
     const html = option.append ? `<span>${value}</span> ${option.append}` : `<span>${value}</span>`
     return option.hint ? `${html}<br>${option.hint}` : html
@@ -27,7 +27,8 @@ const enhanceOption = (option) => {
     synonyms: (option.getAttribute('data-synonyms') ? option.getAttribute('data-synonyms').split('|') : []),
     append: option.getAttribute('data-append'),
     hint: option.getAttribute('data-hint'),
-    boost: (parseFloat(option.getAttribute('data-boost')) || 1)
+    boost: (parseFloat(option.getAttribute('data-boost')) || 1),
+    text: option.textContent || option.innerText
   }
 }
 
