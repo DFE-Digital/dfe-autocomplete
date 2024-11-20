@@ -3,6 +3,7 @@ module.exports = {
     [
       '@babel/preset-env',
       {
+        corejs: 3,
         shippedProposals: true,
         useBuiltIns: 'usage',
         loose: true
