@@ -59,6 +59,6 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
-    "accessible-autocomplete": "^2.0.4"
+    "accessible-autocomplete": "^3.0.1"
   }
 }
