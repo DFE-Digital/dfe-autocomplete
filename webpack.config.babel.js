@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import path from 'path'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
 const ENV = process.env.NODE_ENV || 'development'
 
 const plugins = [
@@ -12,9 +12,9 @@ const plugins = [
 ]
 
 const developmentPlugins = [
-  new CopyWebpackPlugin({ patterns: [
-    { from: './autocomplete.css', to: 'dfe-autocomplete.min.css' }
-  ] })
+  new CopyWebpackPlugin({
+    patterns: [{ from: './autocomplete.css', to: 'dfe-autocomplete.min.css' }]
+  })
 ]
 
 const config = {
@@ -22,28 +22,27 @@ const config = {
 
   optimization: {
     minimize: ENV === 'production',
-    minimizer: [new UglifyJsPlugin({
-      cache: true,
-      parallel: true,
-      sourceMap: true,
-      uglifyOptions: {
-        compress: {
-          negate_iife: false,
-          properties: false,
-        },
-        output: {
-          comments: false
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          nameCache: {},
+          compress: {
+            negate_iife: false,
+            properties: false
+          },
+          sourceMap: true,
+          output: {
+            comments: false
+          }
         }
-      }
-    })]
+      })
+    ]
   },
 
   resolve: {
     extensions: ['.js'],
-    modules: [
-      path.resolve(__dirname, 'node_modules'),
-      'node_modules'
-    ]
+    modules: [path.resolve(__dirname, 'node_modules'), 'node_modules']
   },
 
   module: {
@@ -61,11 +60,7 @@ const config = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          "style-loader",
-          "css-loader",
-          "sass-loader"
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
@@ -75,7 +70,7 @@ const config = {
   node: {
     global: true,
     __filename: false,
-    __dirname: false,
+    __dirname: false
   },
 
   mode: ENV === 'production' ? 'production' : 'development',
@@ -88,7 +83,9 @@ const config = {
         if (!request.params.dir || request.params.dir === undefined) {
           response.redirect('/' + request.params.filename)
         } else {
-          response.redirect('/' + request.params.dir + '/' + request.params.filename)
+          response.redirect(
+            '/' + request.params.dir + '/' + request.params.filename
+          )
         }
       })
     },
@@ -116,13 +113,7 @@ const bundleStandalone = {
     libraryTarget: 'umd',
     globalObject: 'this'
   },
-  plugins: plugins
-    .concat(ENV === 'development'
-      ? developmentPlugins
-      : []
-    )
+  plugins: plugins.concat(ENV === 'development' ? developmentPlugins : [])
 }
 
-module.exports = [
-  bundleStandalone
-]
+module.exports = [bundleStandalone]
