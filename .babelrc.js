@@ -1,13 +1,16 @@
 module.exports = {
   presets: [
-    ['@babel/preset-env', {
-      shippedProposals: true,
-      useBuiltIns: 'usage',
-      loose: true
-    }]
+    [
+      '@babel/preset-env',
+      {
+        shippedProposals: true,
+        useBuiltIns: 'usage',
+        loose: true
+      }
+    ]
   ],
   plugins: [
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
+    ['@babel/plugin-transform-class-properties', { loose: true }],
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-transform-react-jsx', { pragma: 'h' }],
 
@@ -16,4 +19,4 @@ module.exports = {
     '@babel/plugin-transform-member-expression-literals',
     '@babel/plugin-transform-property-literals'
   ]
-};
+}
