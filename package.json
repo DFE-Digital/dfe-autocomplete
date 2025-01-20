@@ -4,6 +4,7 @@
   "description": "DfE Autocomplete built on top of accessible autocomplete lib",
   "main": "dist/dfe-autocomplete.min.js",
   "style": "dist/dfe-autocomplete.min.css",
+  "sass": "src/dfe-autocomplete.scss",
   "directories": {
     "lib": "lib"
   },

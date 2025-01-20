@@ -178,6 +178,12 @@ You need to import it using Sass:
 @import "dfe-autocomplete/src/dfe-autocomplete";
 ```
 
+If your frontend build supports directly importing Sass from node_modules, you can import it from the root folder without specifying the path:
+
+```scss
+@import "dfe-autocomplete";
+```
+
 ## Contributing
 
 Run the `npm run compile` and commit the resulting `dist` folder:
