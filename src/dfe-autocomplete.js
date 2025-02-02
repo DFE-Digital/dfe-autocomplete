@@ -39,6 +39,7 @@ export const setupAccessibleAutoComplete = (component, libraryOptions = {}) => {
   const inError = component.querySelector('div.govuk-form-group').className.includes('error')
   const inputValue = defaultValueOption(component)
   const tracker = libraryOptions.tracker || nullTracker
+  const limitResults = libraryOptions.limitResults || null
 
   const defaultOptions = {
     autoselect: true,
@@ -55,7 +56,14 @@ export const setupAccessibleAutoComplete = (component, libraryOptions = {}) => {
     source: (query, populateResults) => {
       if (/\S/.test(query)) {
         tracker.trackSearch(query)
-        populateResults(sort(query, options))
+
+        let results = sort(query, options)
+
+        if (limitResults) {
+          results = results.slice(0, limitResults)
+        }
+
+        populateResults(results)
       }
     },
     templates: { suggestion: (value) => suggestion(value, options) }
