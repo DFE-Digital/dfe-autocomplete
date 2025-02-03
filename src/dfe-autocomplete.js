@@ -69,26 +69,52 @@ export const setupAccessibleAutoComplete = (component, libraryOptions = {}) => {
     templates: { suggestion: (value) => suggestion(value, options) }
   }
 
-  const autocompleteOptions = Object.assign({}, defaultOptions, libraryOptions)
-
-  // We add a name which we base off the name for the select element and add "raw" to it, eg
-  // if there is a select input called "course_details[subject]" we add a name to the text input
-  // as "course_details[subject_raw]"
-  const matches = /^(\w+)\[(\w+)\]$/.exec(selectEl.name)
-
-  if (matches) {
-    if (autocompleteOptions.rawAttribute) {
-      autocompleteOptions.name = `${matches[1]}[${matches[2]}_raw]`
-    } else {
-      autocompleteOptions.name = `${matches[1]}[${matches[2]}]`
-    }
-  } else {
-    autocompleteOptions.name = selectEl.name
-  }
+  const autocompleteOptions = Object.assign({}, defaultOptions, libraryOptions);
+  autocompleteOptions.name = generateNameFromSelect(selectEl, libraryOptions);
 
   accessibleAutocomplete.enhanceSelectElement(autocompleteOptions)
 
   if (inError) {
     component.querySelector('input').value = inputValue
+  }
+}
+
+// Generate the correct name for the autocomplete field
+//
+// Scenario 1: If a 'name' is explicitly passed in the options, use it directly
+// This scenario bypasses the rest of the logic and assigns the 'name' passed in the options.
+// Example: libraryOptions.name = 'some_value'
+//
+// Scenario 2: If no 'name' is passed, apply regex logic based on the 'select' element's name.
+// The regex looks for the format 'course_details[subject]' and splits it into two parts.
+// Example: selectEl.name = 'course_details[subject]'
+//
+// Scenario 2.1: If 'rawAttribute' is true, append '_raw' to the second part of the name.
+// Example: selectEl.name = 'course_details[subject]' and libraryOptions.rawAttribute = true
+// Result: 'course_details[subject_raw]'
+//
+// Scenario 2.2: If 'rawAttribute' is false (or not specified), keep the name as it is.
+// Example: selectEl.name = 'course_details[subject]' and libraryOptions.rawAttribute = false
+// Result: 'course_details[subject]'
+//
+// Scenario 3: If no match is found from the regex, return the original 'select' element's name.
+// Example: selectEl.name = 'subject'
+// Result: 'subject'
+//
+function generateNameFromSelect(selectEl, libraryOptions) {
+  if (libraryOptions.name) {
+    return libraryOptions.name;
+  }
+
+  const matches = /^(\w+)\[(\w+)\]$/.exec(selectEl.name);
+
+  if (matches) {
+    if (libraryOptions.rawAttribute) {
+      return `${matches[1]}[${matches[2]}_raw]`;
+    } else {
+      return `${matches[1]}[${matches[2]}]`;
+    }
+  } else {
+    return selectEl.name;
   }
 }
