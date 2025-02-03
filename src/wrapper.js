@@ -8,4 +8,5 @@ function dfeAutocomplete(libraryOptions = {}) {
   });
 }
 
+export { setupAccessibleAutoComplete as dfeAutocompleteField }
 export default dfeAutocomplete

@@ -109,7 +109,6 @@ const bundleStandalone = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: '[name].js',
-    libraryExport: 'default',
     libraryTarget: 'umd',
     globalObject: 'this'
   },
