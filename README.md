@@ -137,6 +137,8 @@ import dfeAutocomplete from "dfe-autocomplete";
 dfeAutocomplete({});
 ```
 
+This setup all `[data-module="app-dfe-autocomplete"]` in the page.
+
 Supported options:
 
 - `trackerObject`: A tracker object that responds to 'trackSearch' and 'sendTrackingEvent' functions
@@ -144,6 +146,29 @@ Supported options:
 - `rawAttribute`: the second parameter that will be sent when user submits the form. This is useful when the user types free text instead of choosing any element in the collection.
 
 Plus all the other options from the upstream autocomplete: https://github.com/alphagov/accessible-autocomplete#api-documentation
+
+### Individual elements setup
+
+If you need to set up an individual element, you can now use dfeAutocompleteField.
+
+This allows more flexibility when initializing the autocomplete on a single
+field, rather than applying it to all elements
+with `[data-module="app-dfe-autocomplete"]`.
+
+Example (using Stimulus):
+
+```javascript
+  import { Controller } from '@hotwired/stimulus'
+  import { dfeAutocompleteField } from 'dfe-autocomplete';
+
+  export default class extends Controller {
+    connect() {
+      dfeAutocompleteField(this.element, {
+        minLength: 2,
+      })
+    }
+  }
+```
 
 ## Stylesheet
 
