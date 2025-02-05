@@ -1,19 +1,29 @@
 @import "accessible-autocomplete/src/autocomplete";
 
 // Overrides
-  body .suggestions .autocomplete__menu {
-    top: 20px;
-    border-top: 2px solid black;
+body .suggestions {
+  .autocomplete__input--focused[aria-expanded="true"] {
+    border-bottom: 0;
   }
 
-  body .suggestions .autocomplete__wrapper ul::before {
-    content: 'Suggestions';
-    padding: 4px 8px;
-    border-bottom: 2px solid black;
-    background-color: #f3f2f1;
-    width: 100%;
-    display: block;
+  .autocomplete__input.autocomplete__input--focused[aria-expanded="true"] {
+    box-shadow: inset 2px 2px 0 0, inset -2px 0 0 0;
   }
+
+  .autocomplete__input ~ .autocomplete__menu:before {
+    content: "";
+    display: block;
+    background-color: #0b0c0c;
+    height: 1px;
+    width: calc(100% - 20px);
+    margin: 0 0 0 10px;
+  }
+
+  .autocomplete__menu {
+    margin: 0 0 0 2px;
+    width: calc(100% - 8px);
+  }
+}
 
 // Regular styles from source
 .suggestions {
