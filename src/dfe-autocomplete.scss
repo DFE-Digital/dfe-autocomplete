@@ -2,7 +2,8 @@
 
 // Overrides
 body .suggestions {
-  .autocomplete__input--focused[aria-expanded="true"] {
+  .autocomplete__input--focused[aria-expanded="true"],
+  .autocomplete__hint {
     border-bottom: 0;
   }
 
