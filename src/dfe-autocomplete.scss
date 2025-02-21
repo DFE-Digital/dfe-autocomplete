@@ -1,5 +1,5 @@
 @use "govuk-frontend" as *;
-@import "accessible-autocomplete/src/autocomplete";
+@forward "accessible-autocomplete/src/autocomplete";
 
 // Overrides
 body .suggestions {
