@@ -158,16 +158,16 @@ with `[data-module="app-dfe-autocomplete"]`.
 Example (using Stimulus):
 
 ```javascript
-  import { Controller } from '@hotwired/stimulus'
-  import { dfeAutocompleteField } from 'dfe-autocomplete';
+import { Controller } from "@hotwired/stimulus";
+import { dfeAutocompleteField } from "dfe-autocomplete";
 
-  export default class extends Controller {
-    connect() {
-      dfeAutocompleteField(this.element, {
-        minLength: 2,
-      })
-    }
+export default class extends Controller {
+  connect() {
+    dfeAutocompleteField(this.element, {
+      minLength: 2,
+    });
   }
+}
 ```
 
 ## Stylesheet
@@ -175,13 +175,13 @@ Example (using Stimulus):
 You need to import it using Sass:
 
 ```scss
-@import "dfe-autocomplete/src/dfe-autocomplete";
+@forward "dfe-autocomplete/src/dfe-autocomplete";
 ```
 
 If your frontend build supports directly importing Sass from node_modules, you can import it from the root folder without specifying the path:
 
 ```scss
-@import "dfe-autocomplete";
+@forward "dfe-autocomplete";
 ```
 
 ## Contributing
