@@ -192,6 +192,16 @@ Run the `npm run compile` and commit the resulting `dist` folder:
 npm run build
 ```
 
-## Licence
+# Release process
 
-[MIT](MIT-LICENSE).
+Until we sort out our RubyGems account, dependents will pull the gem from GitHub.
+
+The process is:
+- Bump the version number in `lib/dfe/autocomplete/version.rb`
+- Tag a new version
+- Push to GitHub
+
+The recommended way to accomplish the last two steps is to use https://github.com/svenfuchs/gem-release#gem-tag.
+```bash
+gem tag -p # -p will push to GitHub
+```
