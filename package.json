@@ -1,6 +1,6 @@
 {
   "name": "dfe-autocomplete",
-  "version": "0.0.1",
+  "version": "0.2.1",
   "description": "DfE Autocomplete built on top of accessible autocomplete lib",
   "main": "dist/dfe-autocomplete.min.js",
   "style": "dist/dfe-autocomplete.min.css",
