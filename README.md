@@ -46,7 +46,7 @@ dfeAutocomplete()
 ### 4. Import styles
 
 ```scss
-@import "dfe-autocomplete/src/dfe-autocomplete";
+@forward "dfe-autocomplete/src/dfe-autocomplete";
 ```
 
 That's it. The select element is enhanced into a searchable autocomplete.

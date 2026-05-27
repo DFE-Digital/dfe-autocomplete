@@ -86,6 +86,7 @@
     ]
   },
   "dependencies": {
-    "accessible-autocomplete": "^3.0.1"
+    "accessible-autocomplete": "^3.0.1",
+    "govuk-frontend": "^5.8.0"
   }
 }
